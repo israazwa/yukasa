@@ -75,7 +75,7 @@ class Filters extends BaseFilters
             // 'honeypot',
             'csrf',
             // 'invalidchars',
-            'login',
+            // 'login',
         ],
         'after' => [
             // 'honeypot',
@@ -107,5 +107,7 @@ class Filters extends BaseFilters
      *
      * @var array<string, array<string, list<string>>>
      */
-    public array $filters = [];
+    public array $filters = [
+        'login' => ['before' => ['dev/*', 'admin/*']],
+    ];
 }
