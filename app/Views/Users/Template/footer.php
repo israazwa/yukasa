@@ -16,18 +16,16 @@
 
 
 
-    <section class="bg-dark">
-        <div class="container my-3">
-            <div class="row">
-                <div class="col-md-4 col-xl-4 col-sm-6">
-                    <p>Lorem, ipsum dolor.</p>
-                </div>
-                <div class="col-md-4 col-xl-4 col-sm-6">
-                    <p>Lorem, ipsum dolor.</p>
-                </div>
-                <div class="col-md-4 col-xl-4 col-sm-6">
-                    <p>Lorem, ipsum dolor.</p>
-                </div>
+    <section class="bg-dark text-white">
+        <div class="row text-center">
+            <div class="col-md-4 col-xl-4 col-sm-6">
+                <h4>Hiwwo Corner</h4>
+            </div>
+            <div class="col-md-4 col-xl-4 col-sm-6">
+                <p>Lorem, ipsum dolor.</p>
+            </div>
+            <div class="col-md-4 col-xl-4 col-sm-6">
+                <p>Lorem, ipsum dolor.</p>
             </div>
         </div>
     </section>

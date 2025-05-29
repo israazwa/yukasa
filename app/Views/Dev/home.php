@@ -60,9 +60,9 @@
                     <input class="form-control" type="file" id="formFileMultiple" name="content" multiple>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Keterangan" aria-label="Username" name="text">
+                    <input type="text" class="form-control" placeholder="Judul <H1>" aria-label="Username" name="text">
                     <span class="input-group-text">||</span>
-                    <input type="text" class="form-control" placeholder="Keterangan Lanjutan" aria-label="Server"
+                    <input type="text" class="form-control" placeholder="Keterangan <p>" aria-label="Server"
                         name="keterangan">
                 </div>
                 <button type="submit" class="tombol1">Update</button>

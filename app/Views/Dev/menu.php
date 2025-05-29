@@ -40,19 +40,21 @@
             <form action="/dev/store" method="post" enctype="multipart/form-data">
                 <?= csrf_field() ?>
                 <div class="mb-1">
-                    <input class="form-control" type="file" id="formFileMultiple" multiple name="foto">
+                    <input class="form-control" type="file" id="formFileMultiple" multiple name="foto" Required>
                 </div>
                 <div class="input-group mb-1">
-                    <input type="text" class="form-control" placeholder="Nama Menu" aria-label="Nama Menu" name="nama">
+                    <input type="text" class="form-control" placeholder="Nama Menu" aria-label="Nama Menu" name="nama"
+                        Required>
                     <span class="input-group-text">Rp.</span>
-                    <input type="numeric" class="form-control" placeholder="Harga" aria-label="Hargar" name="harga">
+                    <input type="numeric" class="form-control" placeholder="Harga" aria-label="Hargar" name="harga"
+                        Required>
                 </div>
                 <div class="form-floating mb-1">
                     <input type="text" class="form-control" id="floatingInput" placeholder="Keterangan Menu"
-                        name="keterangan">
+                        name="keterangan" required>
                     <label for="floatingInput">Keterangan Menu</label>
                 </div>
-                <button type="submit" class="tombol1 btn btn-secondary">Update</button>
+                <button type="submit" class="tombol1 btn btn-secondary">Tambah</button>
             </form>
         </div>
     </section>
