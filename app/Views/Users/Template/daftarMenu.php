@@ -48,10 +48,11 @@
                                         style="max-height: 150px;">
                                     <div
                                         class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                                        <a href="#" class="flex-shrink-0 btn btn-sm btn-warning px-3 border-end"
+                                        <a href="/menu/<?= $m['id']; ?>"
+                                            class="flex-shrink-0 btn btn-sm btn-warning px-3 border-end"
                                             style="border-radius: 30px 0 0 30px;">Read More</a>
                                         <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3"
-                                            style="border-radius: 0 30px 30px 0;">Join Now</a>
+                                            style="border-radius: 0 30px 30px 0;">Buy!</a>
                                     </div>
                                 </div>
                                 <div class="text-center p-4 pb-0">
@@ -64,15 +65,15 @@
                                         <small class="fa fa-star text-primary"></small>
                                         <small></small>
                                     </div>
-                                    <h5 class="mb-4"><?= $m['harga']; ?></h5>
+                                    <h5 class="mb-4">Rp.<?= $m['harga']; ?>,00</h5>
                                 </div>
                                 <div class="d-flex border-top">
                                     <small class="flex-fill text-center border-end py-2"><i
-                                            class="fa fa-user-tie text-primary me-2"></i>John Doe</small>
+                                            class="fa fa-user-tie text-primary me-2"></i></small>
                                     <small class="flex-fill text-center border-end py-2"><i
-                                            class="fa fa-clock text-primary me-2"></i>1.49 Hrs</small>
-                                    <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>30
-                                        Students</small>
+                                            class="fa fa-clock text-primary me-2"></i></small>
+                                    <small class="flex-fill text-center py-2"><i
+                                            class="fa fa-user text-primary me-2"></i></small>
                                 </div>
                             </div>
                         </div>

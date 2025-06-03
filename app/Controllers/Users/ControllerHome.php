@@ -28,4 +28,25 @@ class ControllerHome extends BaseController
             view('Users/Template/daftarMenu', $data) .
             view('Users/Template/footer', $data);
     }
+    public function detail($id)
+    {
+        $modelHero = new ModelHero();
+        $heroData = $modelHero->where('id', 7)->first();
+
+        $detailMenu = new ModelMenu();
+        $detail = $detailMenu->where('id', $id)->first();
+        if (!$detail) {
+            return redirect()->back()->with('error', 'Menu tidak ditemukan!');
+        }
+
+        $data = [
+            'img' => $heroData,
+            'title' => 'Detail Menu',
+            'menu' => $detail,
+        ];
+
+        return view('Users/Template/header', $data)
+            . view('Users/Template/detailMenu', $data)
+            . view('Users/Template/footer');
+    }
 }

@@ -37,19 +37,19 @@
                         <div class="row g-3">
                             <div class="col-6 text-start">
                                 <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.1s"
-                                    src="img/about-1.jpg">
+                                    src="<?= base_url('img/about-1.jpg'); ?>">
                             </div>
                             <div class="col-6 text-start">
                                 <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.3s"
-                                    src="img/about-2.jpg" style="margin-top: 25%;">
+                                    src="<?= base_url('img/about-2.jpg'); ?>" style="margin-top: 25%;">
                             </div>
                             <div class="col-6 text-end">
                                 <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.5s"
-                                    src="img/about-3.jpg">
+                                    src="<?= base_url('img/about-3.jpg'); ?>">
                             </div>
                             <div class="col-6 text-end">
                                 <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.7s"
-                                    src="img/about-4.jpg">
+                                    src="<?= base_url('img/about-4.jpg'); ?>">
                             </div>
                         </div>
                     </div>
@@ -69,8 +69,8 @@
                         </p>
                         <div class="row g-4 mb-4">
                             <div class="col-sm-6">
-                                <div class="d-flex align-items-center border-start border-5 border-primary px-3">
-                                    <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">15
+                                <div class="d-flex align-items-center border-start border-5 border-dark px-3">
+                                    <h1 class="flex-shrink-0 display-5 text-danger mb-0" data-toggle="counter-up">15
                                     </h1>
                                     <div class="ps-4">
                                         <p class="mb-0">Years of</p>
@@ -79,8 +79,8 @@
                                 </div>
                             </div>
                             <div class="col-sm-6">
-                                <div class="d-flex align-items-center border-start border-5 border-primary px-3">
-                                    <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">50
+                                <div class="d-flex align-items-center border-start border-5 border-dark px-3">
+                                    <h1 class="flex-shrink-0 display-5 text-danger mb-0" data-toggle="counter-up">50
                                     </h1>
                                     <div class="ps-4">
                                         <p class="mb-0">Popular</p>
@@ -89,7 +89,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a class="btn btn-primary py-3 px-5 mt-2" href="">Read More</a>
+                        <a class="btn btn-warning py-3 px-5 mt-2" href="">Read More</a>
                     </div>
                 </div>
             </div>
@@ -108,7 +108,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             let counters = document.querySelectorAll("[data-toggle='counter-up']");
-            let speed = 200; // Ubah kecepatan animasi
+            let speed = 500; // Ubah kecepatan animasi
 
             counters.forEach(counter => {
                 let updateCount = () => {

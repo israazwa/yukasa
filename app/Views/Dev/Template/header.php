@@ -12,7 +12,6 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
 </head>
 <style>
-
 </style>
 
 <body>
@@ -40,7 +39,7 @@
                         <a class="nav-link" href="#">Pricing</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                        <a class="nav-link logout bg-warning" href="/logout">LogOut!</a>
                     </li>
                 </ul>
             </div>

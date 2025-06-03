@@ -10,6 +10,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
 </head>
+<style>
+    body {
+        height: 100dvh;
+    }
+</style>
 
 <body>
 
@@ -46,8 +51,8 @@
                     <input type="text" class="form-control" placeholder="Nama Menu" aria-label="Nama Menu" name="nama"
                         Required>
                     <span class="input-group-text">Rp.</span>
-                    <input type="numeric" class="form-control" placeholder="Harga" aria-label="Hargar" name="harga"
-                        Required>
+                    <input type="numeric" class="form-control" placeholder="Harga(contoh 12.000)" aria-label="Hargar"
+                        name="harga" Required>
                 </div>
                 <div class="form-floating mb-1">
                     <input type="text" class="form-control" id="floatingInput" placeholder="Keterangan Menu"
@@ -72,15 +77,21 @@
                             <th>Menu</th>
                             <th>Harga</th>
                             <th>More</th>
-                        </tr>
+                            <td>Delete</td>
                     </thead>
                     <tbody>
                         <?php foreach ($menu as $index => $key): ?>
                             <tr>
                                 <td><?= $index + 1; ?></td>
                                 <td><?= esc($key['nama']); ?></td>
-                                <td><?= esc($key['harga']); ?></td>
+                                <td>Rp.<?= esc($key['harga']); ?>,00</td>
                                 <td><a href="detail.php?id=<?= $key['id']; ?>">Detail</a></td>
+                                <td>
+                                    <form action="/menu/delete/<?= $key['id']; ?>" method="post">
+                                        <?= csrf_field() ?> <button class="btn-danger btn">Delete!</button>
+                                    </form>
+                                </td>
+
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

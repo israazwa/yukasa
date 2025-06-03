@@ -44,4 +44,17 @@ class ControllerAdminCRUDMenu extends BaseController
 
         return redirect()->back()->with('success', 'Menu berhasil ditambahkan!');
     }
+    public function delete($id)
+    {
+        $model = new ModelMenu();
+        $menu = $model->find($id);
+
+        $filePath = FCPATH . '/upload/menu/' . $menu['foto'];
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        }
+
+        $model->delete($id);
+        return redirect()->back()->with('alert', 'Menu berhasil dihapus!');
+    }
 }
