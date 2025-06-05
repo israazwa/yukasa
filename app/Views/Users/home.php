@@ -16,7 +16,7 @@
         background-size: cover;
         background-position: center;
         color: white;
-        padding: 150px 20px;
+        padding: 180px 20px;
         text-align: center;
         text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
     }

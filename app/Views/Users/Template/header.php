@@ -30,17 +30,15 @@
                     </li>
                     <li><a class="nav-link" href="shop.html">Shop</a></li>
                     <li><a class="nav-link" href="about.html">About us</a></li>
-                    <li><a class="nav-link" href="services.html">Services</a></li>
-                    <li><a class="nav-link" href="blog.html">Blog</a></li>
+                    <li><a class="nav-link" href="blog.html">Menu's</a></li>
                     <li><a class="nav-link" href="contact.html">Contact us</a></li>
                 </ul>
-
                 <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
                     <li><a class="nav-link" href="cart.html"><img src="<?= base_url('img/cart.svg'); ?>"></a></li>
                     <li>
-                        <a class="nav-link" href="profile.html">
-                            <img src="<?= base_url($profile['user_image']); ?>" alt="Profile" class="rounded-circle"
-                                width="35" height="35">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#profileModal">
+                            <img src="<?= base_url($user['image']); ?>" alt="Profile" class="rounded-circle" width="35"
+                                height="35">
                         </a>
                     </li>
                 </ul>
@@ -48,6 +46,44 @@
         </div>
     </nav>
 
+    <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen-md-down modal-md modal-dialog-centered" role="document">
+            <div class="modal-content p-4">
+                <div class="modal-header mx-auto border-0">
+                    <h2 class="modal-title fs-3 fw-normal">Login</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="login-detail">
+                        <div class="login-form p-0">
+                            <div class="col-lg-12 mx-auto">
+                                <form id="login-form">
+                                    <input type="text" name="username" placeholder="Username or Email Address *"
+                                        class="mb-3 ps-3 text-input">
+                                    <input type="password" name="password" placeholder="Password"
+                                        class="ps-3 text-input">
+                                    <div class="checkbox d-flex justify-content-between mt-4">
+                                        <p class="checkbox-form">
+                                            <label class="">
+                                                <input name="rememberme" type="checkbox" id="remember-me"
+                                                    value="forever"> Remember me </label>
+                                        </p>
+                                        <p class="lost-password">
+                                            <a href="#">Forgot your password?</a>
+                                        </p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer mt-5 d-flex justify-content-center">
+                            <button type="button" class="btn btn-red hvr-sweep-to-right dark-sweep">Login</button>
+                            <button type="button"
+                                class="btn btn-outline-gray hvr-sweep-to-right dark-sweep">Register</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

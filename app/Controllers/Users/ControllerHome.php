@@ -12,7 +12,12 @@ class ControllerHome extends BaseController
     public function index()
     {
         $auth = service('authentication');
-        $user = $auth->user();
+        if ($auth->check()) {
+            $user = $auth->user();
+            // echo "Login sebagai: " . $user->username;
+        } else {
+            // echo "Tidak ada pengguna yang sedang login.";
+        }
 
         $modelHero = new ModelHero();
         $heroData = $modelHero->where('id', 7)->first();
@@ -24,8 +29,8 @@ class ControllerHome extends BaseController
             'title' => 'Home',
             'hero' => $heroData,
             'menu' => $menus,
-            'profile' => [
-                'user_image' => $user->user_image ?? 'default.jpg',
+            'user' => [
+                'image' => $user->user_image ?? 'default.jpg',
                 'username' => $user->username ?? 'Guest',
             ],
         ];

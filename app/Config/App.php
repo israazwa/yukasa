@@ -199,4 +199,9 @@ class App extends BaseConfig
      * @see http://www.w3.org/TR/CSP/
      */
     public bool $CSPEnabled = false;
+
+    public string $cookieDomain = ''; // Kosongkan jika tidak memakai subdomain
+    public string $cookiePath = '/';
+    public string $cookiePrefix = '';
+    public bool $cookieSecure = false; // Ubah ke 'true' jika menggunakan HTTPS
 }
