@@ -37,6 +37,12 @@
 
                 <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
                     <li><a class="nav-link" href="cart.html"><img src="<?= base_url('img/cart.svg'); ?>"></a></li>
+                    <li>
+                        <a class="nav-link" href="profile.html">
+                            <img src="<?= base_url($profile['user_image']); ?>" alt="Profile" class="rounded-circle"
+                                width="35" height="35">
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

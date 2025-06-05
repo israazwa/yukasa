@@ -11,6 +11,9 @@ class ControllerHome extends BaseController
 {
     public function index()
     {
+        $auth = service('authentication');
+        $user = $auth->user();
+
         $modelHero = new ModelHero();
         $heroData = $modelHero->where('id', 7)->first();
 
@@ -21,6 +24,10 @@ class ControllerHome extends BaseController
             'title' => 'Home',
             'hero' => $heroData,
             'menu' => $menus,
+            'profile' => [
+                'user_image' => $user->user_image ?? 'default.jpg',
+                'username' => $user->username ?? 'Guest',
+            ],
         ];
 
         return view('Users/Template/header', $data) .
@@ -30,6 +37,9 @@ class ControllerHome extends BaseController
     }
     public function detail($id)
     {
+        $auth = service('authentication');
+        $user = $auth->user();
+
         $modelHero = new ModelHero();
         $heroData = $modelHero->where('id', 7)->first();
 
@@ -43,6 +53,10 @@ class ControllerHome extends BaseController
             'img' => $heroData,
             'title' => 'Detail Menu',
             'menu' => $detail,
+            'profile' => [
+                'user_image' => $user->user_image ?? 'default.jpg',
+                'username' => $user->username ?? 'Guest',
+            ],
         ];
 
         return view('Users/Template/header', $data)
