@@ -14,6 +14,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
 </head>
+<style>
+    .bg-primary {
+        background-color: var(--bs-warning) !important;
+    }
+</style>
 
 <body>
 
@@ -44,36 +49,76 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" data-bs-toggle="modal" data-bs-target="#profileModal">
-                            <img src="<?= !empty($user['image']) ? base_url($user['image']) : base_url('default.png'); ?>"
-                                alt="Profile" class="rounded-circle" width="35" height="35">
-                        </a>
+                    <li class="nav-item">
+                        <nav class="navbar px-3">
+                            <a href="#" id="openProfile">
+                                <img src="<?= !empty($user['image']) ? base_url($user['image']) : base_url('default.png'); ?>"
+                                    alt="Profile" class="rounded-circle" width="35">
+                            </a>
+                        </nav>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <!-- Modal -->
+    <style>
+        .modal-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.83);
+            justify-content: center;
+            align-items: center;
+            z-index: 99;
+            /* Menempatkan modal di atas semua elemen */
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .warna {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+    </style>
+    <div id="profileModal" class="modal-container">
+        <div class="container mx-3 warna">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="profileModalLabel">Profile</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <div class="profile-container">
+                    <img id="profileImage"
+                        src="<?= !empty($user['image']) ? base_url($user['image']) : base_url('default.png'); ?>"
+                        class="rounded-circle" width="120">
+                    <h3 id="username" class="mt-3">
+                        <?= !empty($user['username']) ? ($user['username']) : 'Guesst'; ?>
+                    </h3>
                 </div>
-                <div class="modal-body text-center">
-                    <img src="<?= !empty($user['image']) ? base_url($user['image']) : base_url('default.png'); ?>"
-                        alt="Profile Picture" class="rounded-circle mb-3" width="100" height="100">
-                    <h5><?= !empty($user['username']) ? $user['username'] : 'Guest'; ?></h5>
-                    <button class="btn btn-secondary mt-3">Change Picture</button>
-                </div>
-                <div class="modal-footer">
-                    <a href="/login" class="btn btn-primary">Login</a>
-                    <a href="/register" class="btn btn-success">Register</a>
-                </div>
+                <form id="changePhotoForm">
+                    <input type="file" id="photoInput" class="form-control mt-3" accept="image/*">
+                    <button type="button" class="btn btn-success mt-3" onclick="changePhoto()">Change Photo</button>
+                </form>
             </div>
         </div>
     </div>
+
 
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -83,6 +128,27 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>
+    <script>"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"</script>
+    <script>document.getElementById("openProfile").addEventListener("click", function () {
+            document.getElementById("profileModal").style.display = "flex";
+        });
+
+        function closeModal() {
+            document.getElementById("profileModal").style.display = "none";
+        }
+
+        function changePhoto() {
+            let fileInput = document.getElementById("photoInput");
+            let profileImage = document.getElementById("profileImage");
+
+            if (fileInput.files.length > 0) {
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                    profileImage.src = e.target.result;
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        }</script>
 
 
 </body>

@@ -39,49 +39,96 @@
     </style>
     <!-- Daftar Menu -->
     <div class="container mt-3">
-        <div class="texth3 fs-2 text-center"><b>Daftar Menu</b></div>
-        <div class="row g-4 justify-content-center">
-            <?php foreach ($menu as $m): ?>
-                <div class="col-lg-4 col-md-6">
-                    <div class="course-item bg-light">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid" src="/upload/menu/<?= $m['foto']; ?>" alt="" style="max-height: 150px;">
-                            <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                                <a href="/menu/<?= $m['id']; ?>" class="btn btn-sm btn-warning px-3 border-end"
-                                    style="border-radius: 30px 0 0 30px;">Read More</a>
-                                <button onclick="addToCart(<?= $m['id']; ?>, '<?= $m['nama']; ?>', <?= $m['harga']; ?>)"
-                                    class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Buy!</button>
+        <div class="texth3 fs-2 text-center mt-3"><b>Daftar Menu</b></div>
+        <div class="container mx-2 text-center mb-4">
+            <h6 class="mb-4">Halaman <?= $pager->getCurrentPage('modelMenu'); ?> dari
+                <?= $pager->getPageCount('modelMenu'); ?>
+            </h6>
+            <div class="row g-4 justify-content-center">
+                <?php foreach ($menu as $m): ?>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="course-item bg-light p-3 rounded shadow">
+                            <div class="position-relative overflow-hidden">
+                                <img class="img-fluid" src="/upload/menu/<?= $m['foto']; ?>" alt=""
+                                    style="max-height: 150px;">
+                                <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
+                                    <a href="/menu/<?= $m['id']; ?>" class="btn btn-sm btn-warning px-3 border-end"
+                                        style="border-radius: 30px 0 0 30px;">Read More</a>
+                                    <button onclick="addToCart(<?= $m['id']; ?>, '<?= $m['nama']; ?>', <?= $m['harga']; ?>)"
+                                        class="btn btn-sm btn-danger px-3"
+                                        style="border-radius: 0 30px 30px 0;">Buy!</button>
+                                </div>
+                            </div>
+                            <div class="text-center p-4 pb-0">
+                                <h3 class="mb-0"><?= $m['nama']; ?></h3>
+                                <h5 class="mb-4">Rp.<?= number_format($m['harga'], 0, ',', '.'); ?>,00</h5>
                             </div>
                         </div>
-                        <div class="text-center p-4 pb-0">
-                            <h3 class="mb-0"><?= $m['nama']; ?></h3>
-                            <h5 class="mb-4">Rp.<?= number_format($m['harga'], 0, ',', '.'); ?>,00</h5>
-                        </div>
                     </div>
-                </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+            </div>
         </div>
     </div>
 
-    <div class="comtainer mx-2 text-center mt-4">
-        <h3 class="mb-4">Halaman <?= $pager->getCurrentPage(); ?> dari <?= $pager->getPageCount(); ?></h3>
-        <nav aria-label="Page navigation">
-            <ul class="pagination justify-content-center">
-                <?= $pager->links() ?>
-            </ul>
-        </nav>
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            <?= $pager->links('modelMenu', 'custom_pager') ?>
+        </ul>
+    </nav>
     </div>
 
-    <!-- Shopping Cart -->
     <!-- Cart Sidebar -->
-    <div id="cartSidebar" class="position-fixed end-0 top-0 h-100 bg-light p-4 shadow"
-        style="width: 300px; display: none;">
-        <h3>Shopping Cart</h3>
-        <ul id="cartList" class="list-group"></ul>
-        <h4 class="mt-3">Total: Rp <span id="totalPrice">0</span></h4>
-        <button onclick="toggleCart()" class="btn btn-sm btn-danger mt-2">Close</button>
+    <div id="cartSidebar" class="position-fixed end-0 top-0 h-100 bg-white p-4 shadow-lg border rounded"
+        style="width: 400px; display: none;">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3 class="text-danger">Your Cart</h3>
+            <button type="button" onclick="toggleCart()" class="btn-close"></button>
+        </div>
+
+        <!-- Tabel Daftar Item -->
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="bg-light">
+                    <tr>
+                        <th>Item</th>
+                        <th class="text-center">Qty</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody id="cartList">
+                    <!-- Data akan diisi oleh JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Total Harga -->
+        <div id="cartTotalContainer" class="mt-3 text-end">
+            <h4 class="fw-bold text-dark">Grand Total: Rp <span id="totalPrice">0</span></h4>
+        </div>
+
+        <!-- Tombol Aksi -->
+        <div class="d-flex justify-content-between mt-4">
+            <button onclick="toggleCart()" class="btn btn-outline-secondary">Close</button>
+            <button class="btn btn-warning">Checkout</button>
+        </div>
     </div>
 
+    <!-- Styling untuk tampilan lebih elegan -->
+    <style>
+        .table th,
+        .table td {
+            padding: 12px;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+    </style>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const cartList = document.getElementById("cartList");
@@ -93,16 +140,19 @@
             function updateCartDisplay() {
                 cartList.innerHTML = "";
                 cart.forEach((item, index) => {
-                    let listItem = document.createElement("li");
-                    listItem.className = "list-group-item d-flex justify-content-between align-items-center";
-                    listItem.innerHTML = `
-                ${item.name} - Rp ${item.price} (Qty: ${item.quantity}) 
-                <button onclick="changeQuantity(${index}, -1)" class="btn btn-sm btn-secondary">-</button>
-                <button onclick="changeQuantity(${index}, 1)" class="btn btn-sm btn-secondary">+</button>
-                <button onclick="removeFromCart(${index})" class="btn btn-sm btn-danger">Remove</button>
-            `;
-                    cartList.appendChild(listItem);
+                    let row = document.createElement("tr");
+                    row.innerHTML = `
+            <td class="item-name" title="${item.name}">${item.name}</td>
+            <td class="text-center">
+                <button onclick="changeQuantity(${index}, -1)" class="btn btn-sm btn-outline-danger">−</button>
+                <span class="mx-2">${item.quantity}</span>
+                <button onclick="changeQuantity(${index}, 1)" class="btn btn-sm btn-outline-success">+</button>
+            </td>
+            <td>Rp ${item.price * item.quantity}</td>
+        `;
+                    cartList.appendChild(row);
                 });
+
                 totalPrice.textContent = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
                 localStorage.setItem("cart", JSON.stringify(cart));
             }
@@ -141,6 +191,22 @@
             window.toggleCart = toggleCart;
 
             updateCartDisplay();
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Cek apakah ada posisi scroll yang tersimpan
+            if (localStorage.getItem("scrollPosition")) {
+                window.scrollTo(0, localStorage.getItem("scrollPosition"));
+            }
+
+            // Simpan posisi scroll sebelum user pindah halaman
+            document.querySelectorAll(".pagination a").forEach(link => {
+                link.addEventListener("click", function () {
+                    localStorage.setItem("scrollPosition", window.scrollY);
+                });
+            });
         });
     </script>
 

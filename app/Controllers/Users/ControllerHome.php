@@ -24,12 +24,19 @@ class ControllerHome extends BaseController
         $heroData = $modelHero->where('id', 7)->first();
 
         $modelMenu = new ModelMenu();
+        $paginatedData = $modelMenu->paginate(6, 'modelMenu');
+        $pager = $modelMenu->pager;
 
         $data = [
             'title' => 'Home',
             'hero' => $heroData,
-            'menu' => $modelMenu->paginate(6),
+            'totalmenu' => $modelMenu->countAllResults(),
+            'menu' => $paginatedData,
+            'data' => $paginatedData,
             'pager' => $modelMenu->pager,
+            'currentPage' => $modelMenu->pager->getCurrentPage('modelMenu'),
+            'perPage' => $modelMenu->pager->getPerPage('modelMenu'),
+            'total' => $modelMenu->pager->getTotal('modelMenu'),
             'user' => [
                 'image' => $user->user_image ?? 'default.jpg',
                 'username' => $user->username ?? 'Guest',

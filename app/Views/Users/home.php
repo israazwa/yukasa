@@ -70,7 +70,7 @@
                         <div class="row g-4 mb-4">
                             <div class="col-sm-6">
                                 <div class="d-flex align-items-center border-start border-5 border-dark px-3">
-                                    <h1 class="flex-shrink-0 display-5 text-danger mb-0" data-toggle="counter-up">15
+                                    <h1 class="flex-shrink-0 display-5 text-danger mb-0" data-toggle="counter-up">7
                                     </h1>
                                     <div class="ps-4">
                                         <p class="mb-0">Years of</p>
@@ -80,16 +80,17 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="d-flex align-items-center border-start border-5 border-dark px-3">
-                                    <h1 class="flex-shrink-0 display-5 text-danger mb-0" data-toggle="counter-up">50
+                                    <h1 class="flex-shrink-0 display-5 text-danger mb-0" data-toggle="counter-up">
+                                        <?= $totalmenu; ?>
                                     </h1>
                                     <div class="ps-4">
-                                        <p class="mb-0">Popular</p>
-                                        <h6 class="text-uppercase mb-0">Master Chefs</h6>
+                                        <p class="mb-0">Total</p>
+                                        <h6 class="text-uppercase mb-0">Menu</h6>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <a class="btn btn-warning py-3 px-5 mt-2" href="">Read More</a>
+                        <!-- <a class="btn btn-warning py-3 px-5 mt-2" href="">Read More</a> -->
                     </div>
                 </div>
             </div>
