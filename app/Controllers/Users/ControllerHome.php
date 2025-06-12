@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\DevModel\ModelHero;
 use App\Models\DevModel\ModelMenu;
 use CodeIgniter\HTTP\ResponseInterface;
+use Config\Pager;
 
 class ControllerHome extends BaseController
 {
@@ -23,12 +24,12 @@ class ControllerHome extends BaseController
         $heroData = $modelHero->where('id', 7)->first();
 
         $modelMenu = new ModelMenu();
-        $menus = $modelMenu->findAll();
 
         $data = [
             'title' => 'Home',
             'hero' => $heroData,
-            'menu' => $menus,
+            'menu' => $modelMenu->paginate(6),
+            'pager' => $modelMenu->pager,
             'user' => [
                 'image' => $user->user_image ?? 'default.jpg',
                 'username' => $user->username ?? 'Guest',
