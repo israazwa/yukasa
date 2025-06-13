@@ -38,7 +38,7 @@
         }
     </style>
     <!-- Daftar Menu -->
-    <div class="container mt-3">
+    <div class="container mt-3" id="menu">
         <div class="texth3 fs-2 text-center mt-3"><b>Daftar Menu</b></div>
         <div class="container mx-2 text-center mb-4">
             <h6 class="mb-4">Halaman <?= $pager->getCurrentPage('modelMenu'); ?> dari

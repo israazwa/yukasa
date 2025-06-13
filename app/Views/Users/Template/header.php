@@ -33,13 +33,10 @@
 
             <div class="collapse navbar-collapse" id="navbarsFurni">
                 <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li><a class="nav-link" href="shop.html">Shop</a></li>
-                    <li><a class="nav-link" href="about.html">About us</a></li>
-                    <li><a class="nav-link" href="blog.html">Menu's</a></li>
-                    <li><a class="nav-link" href="contact.html">Contact us</a></li>
+                    <li><a class="nav-link" href="/">Home</a></li>
+                    <li><a class="nav-link" href="#about">About us</a></li>
+                    <li><a class="nav-link" href="#menu">Menu's</a></li>
+                    <li><a class="nav-link" href="#footer">Contact us</a></li>
                 </ul>
                 <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
                     <li class="nav-item">
@@ -111,12 +108,22 @@
                         <?= !empty($user['username']) ? ($user['username']) : 'Guesst'; ?>
                     </h3>
                 </div>
-                <form id="changePhotoForm">
-                    <input type="file" id="photoInput" class="form-control mt-3" accept="image/*">
-                    <button type="button" class="btn btn-success mt-3" onclick="changePhoto()">Change Photo</button>
-                </form>
-            </div>
+                <?php if (service('authentication')->check()): ?>
+                    <div class="container mx-3">
+                        <form id="changePhotoForm">
+                            <input type="file" id="photoInput" class="form-control mt-3" accept="image/*">
+                            <div class="container d-flex">
+                                <button type="button" class="btn btn-success mt-3 mx-2" onclick="changePhoto()">Change
+                                    Photo</button>
+                        </form>
+                        <a href="/logout" class="btn btn-warning mt-3 mx-2"> Log Out! </a>
+                    </div>
+                </div>
+            <?php else: ?>
+                <a href="<?= site_url('/login') ?>" class="btn btn-primary mt-3">Login</a>
+            <?php endif; ?>
         </div>
+    </div>
     </div>
 
 

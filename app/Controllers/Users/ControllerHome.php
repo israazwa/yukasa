@@ -7,6 +7,7 @@ use App\Models\DevModel\ModelHero;
 use App\Models\DevModel\ModelMenu;
 use CodeIgniter\HTTP\ResponseInterface;
 use Config\Pager;
+use Myth\Auth\Auth;
 
 class ControllerHome extends BaseController
 {

@@ -29,7 +29,7 @@
     </section>
 
 
-    <section>
+    <section id="about">
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="row g-5 align-items-center">
@@ -54,8 +54,8 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <h5 class="section-title ff-secondary text-start text-primary fw-normal">About</h5>
-                        <h1 class="mb-4">Hiwwo <i class="fa fa-utensils text-primary me-2"></i>Corner</h1>
+                        <h5 class="section-title ff-secondary text-start text-danger fw-normal">About</h5>
+                        <h1 class="mb-4">Hiwwo <i class="text-primary me-2"></i>Corner</h1>
                         <p class="mb-4">Hiwwoo Corner merupakan kafe kekinian yang beralamat di Jl. Bougenville, RT 11
                             RW 06
                             Kupang Dukuh, Kec. Ambarawa, Kabupaten Semarang, Jawa Tengah. .</p>
