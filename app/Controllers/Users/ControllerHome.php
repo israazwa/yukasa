@@ -82,6 +82,11 @@ class ControllerHome extends BaseController
                 'username' => $user->username ?? 'Guest',
                 'id' => $user->id ?? null,
             ],
+            'user' => [
+                'image' => $user->user_image ?? 'default.jpg',
+                'username' => $user->username ?? 'Guest',
+                'id' => $user->id ?? null,
+            ],
         ];
 
         return view('Users/Template/header', $data)

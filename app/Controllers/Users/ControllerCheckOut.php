@@ -25,6 +25,11 @@ class ControllerCheckOut extends BaseController
                 'username' => $user->username ?? 'Guest',
                 'email' => $user->email ?? 'No Email',
             ],
+            'user' => [
+                'image' => $user->user_image ?? 'default.jpg',
+                'username' => $user->username ?? 'Guest',
+                'id' => $user->id ?? null,
+            ],
         ];
         return view('Users/Template/header', $data) .
             view('Users/checkout', $data) .
