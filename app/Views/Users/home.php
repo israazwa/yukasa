@@ -10,25 +10,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
 </head>
-<style>
-    .hero {
-        background-image: url('<?= base_url('/upload/dev/hero/' . $hero['content']); ?>');
-        background-size: cover;
-        background-position: center;
-        color: white;
-        padding: 180px 20px;
-        text-align: center;
-        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
-    }
-</style>
 
 <body>
-    <section class="hero" id="hero">
-        <h1><?= $hero['text']; ?></h1>
-        <p><?= $hero['keterangan']; ?></p>
-    </section>
-
-
     <section id="about">
         <div class="container-xxl py-5">
             <div class="container">

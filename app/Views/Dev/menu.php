@@ -9,6 +9,8 @@
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css"
+        rel="stylesheet">
 </head>
 <style>
     body {
@@ -17,7 +19,15 @@
 </style>
 
 <body>
-
+    <?php if (session()->has('error')): ?>
+        <div class="alert alert-danger">
+            <?= session('error'); ?>
+        </div>
+    <?php elseif (session()->has('success')): ?>
+        <div class="alert alert-primary">
+            <?= session('success'); ?>
+        </div>
+    <?php endif; ?>
     <section>
         <div class="container">
             <ul class="nav nav-tabs">
@@ -59,9 +69,16 @@
                         name="keterangan" required>
                     <label for="floatingInput">Keterangan Menu</label>
                 </div>
-                <button type="submit" class="tombol1 btn btn-secondary">Tambah</button>
-            </form>
+                <div class="form-floating mb-3 d-flex">
+                    <input type="numeric" class="form-control" id="floatingInput" placeholder="Masukan Diskon(jika ada)"
+                        name="diskon">
+                    <label for="floatingInput" class="text-danger">Masukan Diskon(jika ada)</label>
+                    <button type="submit" class="tombol1 btn btn-secondary mt-2 mx-4">Tambah</button>
+                </div>
+
         </div>
+
+        </form>
     </section>
 
     <section>
@@ -82,20 +99,33 @@
                     <tbody>
                         <?php foreach ($menu as $index => $key): ?>
                             <tr>
-                                <td><?= $index + 1; ?></td>
-                                <td><?= esc($key['nama']); ?></td>
-                                <td>Rp.<?= esc($key['harga']); ?>,00</td>
+                                <td><?= ($currentPage - 1) * $perPage + $index + 1; ?></td>
+                                <?php if ($key['promo'] == 1): ?>
+                                    <td class=""><?= esc($key['nama']); ?>
+                                    <?php elseif ($key['promo'] == 0): ?>
+                                    <td><?= esc($key['nama']); ?>
+                                    <?php endif; ?>
+                                </td>
+                                <?php if ($key['promo'] == 1): ?>
+                                    <td class=" d-flex">
+                                        <p class="mx-2 text-danger"><?= esc($key['harga']); ?></p>
+                                        <p class="mx-2 text-danger">Diskon <?= $key['diskon']; ?></p>
+                                        <p>Total Harga : Rp. <?= ($key['harga'] - $key['diskon']); ?></p>
+                                    </td>
+                                <?php elseif ($key['promo'] == 0): ?>
+                                    <td><?= esc($key['harga']); ?></td>
+                                <?php endif; ?>
                                 <td><a href="detail.php?id=<?= $key['id']; ?>">Detail</a></td>
                                 <td>
                                     <form action="/menu/delete/<?= $key['id']; ?>" method="post">
                                         <?= csrf_field() ?> <button class="btn-danger btn">Delete!</button>
                                     </form>
                                 </td>
-
                             </tr>
-                        <?php endforeach; ?>
-                    </tbody>
+                        </tbody>
+                    <?php endforeach; ?>
                 </table>
+                <?= $pager->links('modelMenu', 'default_full') ?>
             </div>
         </div>
     </section>

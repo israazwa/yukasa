@@ -47,21 +47,38 @@
             <div class="row g-4 justify-content-center">
                 <?php foreach ($menu as $m): ?>
                     <div class="col-lg-4 col-md-6">
-                        <div class="course-item bg-light p-3 rounded shadow">
-                            <div class="position-relative overflow-hidden">
-                                <img class="img-fluid" src="/upload/menu/<?= $m['foto']; ?>" alt=""
-                                    style="max-height: 150px;">
-                                <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                                    <a href="/menu/<?= $m['id']; ?>" class="btn btn-sm btn-warning px-3 border-end"
-                                        style="border-radius: 30px 0 0 30px;">Read More</a>
-                                    <button onclick="addToCart(<?= $m['id']; ?>, '<?= $m['nama']; ?>', <?= $m['harga']; ?>)"
-                                        class="btn btn-sm btn-danger px-3"
-                                        style="border-radius: 0 30px 30px 0;">Buy!</button>
-                                </div>
+                        <div class="d-flex align-items-center justify-content-start">
+                            <div class="rounded me-4" style="width: 140px; height: 140px;">
+                                <a href="/menu/<?= $m['id']; ?>"><img class=" circle-fit"
+                                        src="/upload/menu/<?= $m['foto']; ?>" alt=""></a>
+                                <style>
+                                    img.circle-fit {
+                                        width: 140px;
+                                        height: 140px;
+                                        object-fit: cover;
+                                        object-position: center;
+                                        border-radius: 50%;
+                                        overflow: hidden;
+                                    }
+
+                                    img.circle-fit:hover {
+                                        transform: scale(1.1);
+                                        transition: transform 0.3s ease;
+                                    }
+                                </style>
                             </div>
-                            <div class="text-center p-4 pb-0">
-                                <h3 class="mb-0"><?= $m['nama']; ?></h3>
-                                <h5 class="mb-4">Rp.<?= number_format($m['harga'], 0, ',', '.'); ?>,00</h5>
+                            <div>
+                                <h6 class="mb-2 fs-4"><?= $m['nama']; ?></h6>
+                                <div class="d-flex mb-2">
+                                    <p class="text-secondary mb-0 me-2" style="text-align: left;">
+                                        <?= $m['keterangan']; ?>
+                                    </p>
+                                </div>
+                                <div class="d-flex mb-2">
+                                    <h5 class="fw-bold me-2">Rp.<?= number_format($m['harga'], 2, ',', '.'); ?></h5>
+                                    <button onclick="addToCart(<?= $m['id']; ?>, '<?= $m['nama']; ?>', <?= $m['harga']; ?>)"
+                                        class="btn btn-sm btn-danger px-3" style="border-radius: 5px;">Buy!</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -70,12 +87,10 @@
         </div>
     </div>
 
-    <nav aria-label="Page navigation">
-        <ul class="pagination justify-content-center">
-            <?= $pager->links('modelMenu', 'custom_pager') ?>
-        </ul>
-    </nav>
-    </div>
+
+    <ul class="pagination justify-content-center">
+        <?= $pager->links('modelMenu', 'custom_pager') ?>
+    </ul>
 
     <!-- Cart Sidebar -->
     <div id="cartSidebar" class="position-fixed end-0 top-0 h-100 bg-white p-4 shadow-lg border rounded"
@@ -109,7 +124,7 @@
         <!-- Tombol Aksi -->
         <div class="d-flex justify-content-between mt-4">
             <button onclick="toggleCart()" class="btn btn-outline-secondary">Close</button>
-            <button class="btn btn-warning">Checkout</button>
+            <a href="/checkout" class="btn btn-warning">Checkout</a>
         </div>
     </div>
 
@@ -125,7 +140,7 @@
         }
 
         .btn-primary {
-            background-color: #007bff;
+            background-color: rgb(255, 106, 0);
             border: none;
         }
     </style>

@@ -18,11 +18,14 @@
     .bg-primary {
         background-color: var(--bs-warning) !important;
     }
+
+    .custom-navbar {
+        transition: transform 0.3s ease-in-out;
+    }
 </style>
 
 <body>
-
-    <nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
+    <nav class="custom-navbar navbar navbar-expand-md navbar-dark bg-dark sticky-top" aria-label="Furni navigation bar">
         <div class="container">
             <a class="navbar-brand" href="index.html"><b>Hiwwo Corner</b></a>
 
@@ -36,7 +39,7 @@
                     <li><a class="nav-link" href="/">Home</a></li>
                     <li><a class="nav-link" href="#about">About us</a></li>
                     <li><a class="nav-link" href="#menu">Menu's</a></li>
-                    <li><a class="nav-link" href="#footer">Contact us</a></li>
+                    <li><a class="nav-link" href="#contact">Contact us</a></li>
                 </ul>
                 <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
                     <li class="nav-item">
@@ -49,7 +52,7 @@
                     <li class="nav-item">
                         <nav class="navbar px-3">
                             <a href="#" id="openProfile">
-                                <img src="<?= !empty($user['image']) ? base_url($user['image']) : base_url('default.png'); ?>"
+                                <img src="<?= !empty($user['image']) ? base_url('upload/user_image/' . $user['image']) : base_url('default.png'); ?>"
                                     alt="Profile" class="rounded-circle" width="35">
                             </a>
                         </nav>
@@ -97,35 +100,42 @@
         }
     </style>
     <div id="profileModal" class="modal-container">
-        <div class="container mx-3 warna">
-            <div class="modal-content">
-                <span class="close-btn" onclick="closeModal()">&times;</span>
-                <div class="profile-container">
-                    <img id="profileImage"
-                        src="<?= !empty($user['image']) ? base_url($user['image']) : base_url('default.png'); ?>"
-                        class="rounded-circle" width="120">
-                    <h3 id="username" class="mt-3">
-                        <?= !empty($user['username']) ? ($user['username']) : 'Guesst'; ?>
-                    </h3>
-                </div>
-                <?php if (service('authentication')->check()): ?>
-                    <div class="container mx-3">
-                        <form id="changePhotoForm">
-                            <input type="file" id="photoInput" class="form-control mt-3" accept="image/*">
-                            <div class="container d-flex">
-                                <button type="button" class="btn btn-success mt-3 mx-2" onclick="changePhoto()">Change
-                                    Photo</button>
-                        </form>
-                        <a href="/logout" class="btn btn-warning mt-3 mx-2"> Log Out! </a>
+        <div class="container mx-5">
+            <div class="container mx-3 warna">
+                <div class="modal-content">
+                    <span class="close-btn" onclick="closeModal()">&times;</span>
+                    <div class="profile-container">
+                        <img id="profileImage"
+                            src="<?= !empty($user['image']) ? base_url('upload/user_image/' . $user['image']) : base_url('default.png'); ?>"
+                            alt="Foto Profil" class="img-thumbnail" style="max-width: 100px;" class="rounded-circle"
+                            width="120">
+                        <h3 id="username" class="mt-3">
+                            <?= !empty($user['username']) ? ($user['username']) : 'Guesst'; ?>
+                        </h3>
                     </div>
+                    <?php if (service('authentication')->check()): ?>
+                        <div class="container mx-3">
+                            <form id="changePhotoForm" action="/upptofile/<?= $user['id']; ?>" method="post"
+                                enctype="multipart/form-data">
+                                <?= csrf_field() ?>
+                                <input type="file" name="user_image" id="photoInput" class="form-control mt-3" required>
+                                <div class="d-flex mt-3">
+                                    <button type="submit" class="btn btn-success mx-2">Change Photo</button>
+                                    <a href="/logout" class="btn btn-warning mx-2">Log Out!</a>
+                                </div>
+                            </form>
+                        </div>
+                    <?php else: ?>
+                        <div class="container mx-2">
+                            <a href="<?= site_url('/login') ?>" class="btn btn-primary mt-3">Login</a>
+                        </div>
+                    <?php endif; ?>
                 </div>
-            <?php else: ?>
-                <a href="<?= site_url('/login') ?>" class="btn btn-primary mt-3">Login</a>
-            <?php endif; ?>
+            </div>
         </div>
-    </div>
-    </div>
 
+
+    </div>
 
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -157,6 +167,24 @@
             }
         }</script>
 
+    <script>
+        let lastScrollTop = 0;
+        const navbar = document.querySelector(".custom-navbar");
+
+        window.addEventListener("scroll", function () {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > lastScrollTop) {
+                // Saat scroll ke bawah, navbar menghilang
+                navbar.style.transform = "translateY(-100%)";
+            } else {
+                // Saat scroll ke atas, navbar muncul kembali
+                navbar.style.transform = "translateY(0)";
+            }
+
+            lastScrollTop = scrollTop;
+        });
+    </script>
 
 </body>
 

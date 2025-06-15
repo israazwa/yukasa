@@ -23,7 +23,8 @@
             <div class="row mt-3 justify-content-center align-items-center">
                 <div class="col-md-4 col-xl-4 col-sm-6">
                     <h4>Hiwwo Corner</h4>
-                    <p style="text-align: justify;">Jl. Bougenville, RT 11 RW 06 Kupang Dukuh, Kec. Ambarawa, Kabupaten
+                    <p style="text-align: justify;">Jl. Bougenville, RT 11 RW 06 Kupang Dukuh, <br>Kec. Ambarawa,
+                        Kabupaten
                         Semarang, Jawa Tengah.</p>
                 </div>
                 <div class="col-md-4 col-xl-4 col-sm-6">

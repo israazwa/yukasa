@@ -73,59 +73,33 @@
 </body>
 
 <section>
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-sm-6 col-xl-3">
-                <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
+    <div class="container mt-5">
+        <div class="row g-4">
+            <div class="col-sm-6 col-xl-6">
+                <div class="card shadow-sm border-0 h-100">
                     <div class="card-body">
-                        <h5 class="card-title">CRUD MENU</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the
-                            card’s content.</p>
-                        <a href="/dev/menu" class="btn btn-primary">Go somewhere</a>
+                        <h5 class="card-title"><i class="bi bi-list-check me-2"></i>CRUD MENU</h5>
+                        <p class="card-text text-muted">Kelola data menu dengan mudah melalui antarmuka CRUD</p>
+                        <a href="/dev/menu" class="btn btn-outline-primary w-100">Kelola Menu</a>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-xl-3">
-                <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
+
+            <div class="col-sm-6 col-xl-6">
+                <div class="card shadow-sm border-0 h-100">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the
-                            card’s content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-xl-3">
-                <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the
-                            card’s content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-xl-3">
-                <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the
-                            card’s content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <h5 class="card-title"><i class="bi bi-receipt me-2"></i>Bukti Pembayaran</h5>
+                        <p class="card-text text-muted">Lihat dan kelola bukti pembayaran yang telah diunggah oleh
+                            pelanggan.</p>
+                        <a href="/dev/bukti" class="btn btn-outline-success w-100">Lihat Bukti</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 </section>
+<div class="mt-5"></div>
 
 
 

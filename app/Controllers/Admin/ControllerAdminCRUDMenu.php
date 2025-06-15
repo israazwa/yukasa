@@ -11,11 +11,15 @@ class ControllerAdminCRUDMenu extends BaseController
     public function index()
     {
         $model = new ModelMenu();
-        $modelMenu1 = $model->findAll();
+        $modelMenu1 = $model->paginate(5, 'modelMenu');
 
         $data = [
             'title' => 'Crud Menu',
             'menu' => $modelMenu1,
+            'pager' => $model->pager,
+            'currentPage' => $model->pager->getCurrentPage('modelMenu'),
+            'perPage' => $model->pager->getPerPage('modelMenu'),
+            'total' => $model->pager->getTotal('modelMenu'),
         ];
 
         return view('Dev/Template/header', $data) .
@@ -31,6 +35,14 @@ class ControllerAdminCRUDMenu extends BaseController
             return redirect()->back()->with('error', 'File tidak ditemukan atau tidak valid!');
         }
 
+        $harga = (int) $this->request->getPost('harga');
+        $diskon = (int) $this->request->getPost('diskon');
+        $promo = (!empty($diskon) && $diskon > 0) ? 1 : 0;
+
+        if ($harga < $diskon) {
+            return redirect()->back()->with('error', 'Diskon tidak boleh lebih besar dari harga!');
+        }
+
         $fileName = time() . '_' . $file->getClientName();
         $file->move(FCPATH . '/upload/menu', $fileName);
 
@@ -38,8 +50,10 @@ class ControllerAdminCRUDMenu extends BaseController
         $model->insert([
             'keterangan' => $this->request->getPost('keterangan'),
             'nama' => $this->request->getPost('nama'),
-            'harga' => $this->request->getPost('harga'),
+            'harga' => $harga,
             'foto' => $fileName,
+            'diskon' => $diskon,
+            'promo' => $promo,
         ]);
 
         return redirect()->back()->with('success', 'Menu berhasil ditambahkan!');

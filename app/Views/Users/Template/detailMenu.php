@@ -7,6 +7,7 @@
     <title>Detail Menu</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Google Fonts: Poppins -->
@@ -248,7 +249,7 @@
                         </button>
                         <button type="button" class="btn btn-modern btn-pay" id="proceedPaymentBtn"
                             aria-label="Proceed to payment">
-                            <i class="bi bi-credit-card-2-front-fill" aria-hidden="true"></i> Lanjutkan Pembayaran
+                            <i class="bi bi-credit-card-2-front-fill" aria-hidden="true">Lanjutkan Pembayaran</i>
                         </button>
                     </div>
                 </div>
@@ -257,36 +258,35 @@
 
         <!-- Toast -->
         <div id="toast" role="alert" aria-live="assertive" aria-atomic="true"></div>
-
-        <!-- Modal -->
-        <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content rounded-4 shadow">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="paymentModalLabel">Lanjutkan Pembayaran</h5>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Silakan masukkan detail pembayaran Anda.</p>
-                        <form id="paymentForm">
-                            <div class="mb-3">
-                                <label for="cardNumber" class="form-label">Nomor Kartu</label>
-                                <input type="text" class="form-control" id="cardNumber"
-                                    placeholder="1234 5678 9012 3456" required pattern="\\d{16}">
-                            </div>
-                            <div class="mb-3">
-                                <label for="expiryDate" class="form-label">Tanggal Kadaluarsa</label>
-                                <input type="month" class="form-control" id="expiryDate" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="cvc" class="form-label">CVC</label>
-                                <input type="text" class="form-control" id="cvc" placeholder="123" required
-                                    pattern="\\d{3}">
-                            </div>
-                            <button type="submit" class="btn btn-pay w-100 rounded-4">Bayar Sekarang</button>
-                        </form>
-                    </div>
+    </div>
+    <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 shadow">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="paymentModalLabel">Lanjutkan Pembayaran</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Silakan masukkan detail pembayaran Anda.</p>
+                    <form id="paymentForm">
+                        <div class="mb-3">
+                            <label for="cardNumber" class="form-label">Nomor Kartu</label>
+                            <input type="text" class="form-control" id="cardNumber" placeholder="1234 5678 9012 3456"
+                                required pattern="\\d{16}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="expiryDate" class="form-label">Tanggal Kadaluarsa</label>
+                            <input type="month" class="form-control" id="expiryDate" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cvc" class="form-label">CVC</label>
+                            <input type="text" class="form-control" id="cvc" placeholder="123" required
+                                pattern="\\d{3}">
+                        </div>
+                        <button class="btn btn-warning" data-bs-toggle="modal"
+                            data-bs-target="#paymentModal">Checkout</button>
+                    </form>
                 </div>
             </div>
         </div>

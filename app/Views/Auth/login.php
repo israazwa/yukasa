@@ -78,7 +78,7 @@
                 alt="Profile Image">
         </div>
         <div class="card">
-            <h2>Selamat datang di Kafe Aroma!</h2>
+            <h2>Selamat datang di Hiwwo Corner!</h2>
             <p class="text-center">Silakan login untuk menikmati layanan kami.</p>
             <?= view('Myth\Auth\Views\_message_block') ?>
             <form action="<?= url_to('login') ?>" method="post">
@@ -99,6 +99,10 @@
                 </div>
                 <button type="submit" class="btn btn-primary">☕ Masuk</button>
             </form>
+            <?php if ($config->allowRegistration): ?>
+                <p class="text-center mt-2"><a class="text-decoration-none text-secondary "
+                        href="<?= url_to('register') ?>"><?= lang('Auth.needAnAccount') ?></a></p>
+            <?php endif; ?>
         </div>
     </div>
 
